@@ -1,0 +1,6 @@
+gen
+bin
+/local.properties
+.DS_Store
+/build
+/captures

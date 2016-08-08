@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/normal_margin" >
+
+    <TextView
+        android:id="@+id/excampleCoord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="示例坐标(经度，纬度)：116.433608,39.911127" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+         <Button
+             android:id="@+id/bt_covert"
+             style="?android:attr/buttonStyleSmall"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/coordinateConvert" />
+
+         <TextView
+             android:id="@+id/tv_convertResult"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="@dimen/margin_middle"
+             android:textColor="@color/red"
+              />
+            
+    </LinearLayout>
+    
+     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+          <Button
+              android:id="@+id/bt_check"
+              style="?android:attr/buttonStyleSmall"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/checkIsChina" />
+
+          <TextView
+              android:id="@+id/tv_checkResult"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="@dimen/margin_middle"
+              android:textColor="@color/red"
+              />
+    </LinearLayout>
+
+</LinearLayout>

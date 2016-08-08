@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">高德定位SDK示例</string>
+    <string name="title_main">高德定位SDK功能展示</string>
+    
+    <string name="title_location">获取定位数据</string>
+    <string name="location">获取定位数据</string>
+    <string name="location_dec">调用定位接口获取定位数据</string>
+    
+    <string name="title_geoFenceAlert">地理围栏</string>
+    <string name="geoFenceAlert">地理围栏</string>
+    <string name="geoFenceAlert_dec">可以设置对进入或离开区域进行提醒</string>
+    
+    
+    <string name="title_assistantLocation">H5辅助定位</string>
+    <string name="assistantLocation">H5辅助定位</string>
+    <string name="assistantLocation_dec">展示H5辅助定位功能</string>
+    
+    <string name="title_tools">地图计算工具</string>
+    <string name="tools">地图计算工具</string>
+    <string name="tools_dec">坐标转换等功能演示</string>
+    
+    <string name="title_lastLocation">获取最后一次位置</string>
+    <string name="lastLocation">获取最后一次位置</string>
+	<string name="lastLocation_dec">获取最后一次定位的位置，此位置是一个历史位置</string>
+    
+    
+    <string name="title_alarmCPU">定时唤起CPU</string>
+    <string name="alarmCPU">定时唤起cpu</string>
+	<string name="alarmCPU_dec">通过一个闹钟程序后台定时唤起cpu</string>
+	
+	<string name="title_errorCode">错误码说明</string>
+	<string name="errorCode">错误码说明</string>
+	<string name="errorCode_dec">错误码说明以及对应的解决方法</string>
+    
+	<string name="defaultInteval">1000</string>
+	<string name="defaultHttpTimeout">30000</string>
+	
+	<string name="battery_saving">低功耗模式</string>
+    <string name="device_sensors">仅设备模式</string>
+    <string name="hight_accuracy">高精度模式</string>
+    <string name="interval">定位周期(ms)</string>
+	<string name="httpTimeout">网络超时(ms)</string>
+	<string name="location_once">单次定位</string>
+	<string name="needAddress">逆地理编码</string>
+	<string name="cacheAble">开启缓存</string>
+	<string name="onceLastest">等待wifi刷新</string>
+	<string name="gpsFirst">GPS优先</string>
+	
+	<string name="alarmInterval">唤醒周期(s)</string>
+	
+	<string name="startLocation">开始定位</string>
+	<string name="stopLocation">停止定位</string>
+	
+	<string name="fenceRadius">围栏半径</string>
+	<string name="meter">米</string>
+	<string name="alertIn">进入提醒</string>
+	<string name="alertOut">离开提醒</string>
+	<string name="addFence">添加围栏</string>
+	<string name="removeFence">移除围栏</string>
+	
+	<string name="getLastLocation">获取最后位置</string>
+	
+	<string name="startAssistantLocation">启动H5辅助定位</string>
+	<string name="stopAssistantLocation">停止H5辅助定位</string>
+	<string name="urlLocation">浏览器定位</string>
+	<string name="assistantLocationInfo">辅助定位已经启动，请点击模拟浏览器请求或者在浏览器中输入http://127.0.0.1:43689/进行测试</string>
+	
+	<string name="coordinateConvert">坐标转换</string>
+	<string name="checkIsChina">位置区域判断</string>
+	
+	<string name="notifyTitle">提示</string>
+	<string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
+	<string name="setting">设置</string>
+	<string name="cancel">取消</string>
+	
+	<string name="errorCodeInfo">
+	    0	定位成功。	可以在定位回调里判断定位返回成功后再进行业务逻辑运算\n
+	    1	一些重要参数为空，如context；	请对定位传递的参数进行非空判断\n
+	    2	定位失败，由于仅扫描到单个wifi，且没有基站信息。	请重新尝试\n
+	    3	获取到的请求参数为空，可能获取过程中出现异常。	请对所连接网络进行全面检查，请求可能被篡改\n
+	    4	请求服务器过程中的异常，多为网络情况差，链路不通导致	请检查设备网络是否通畅\n
+	    5	返回的XML格式错误，解析失败。	请稍后再试\n
+	    6	定位服务返回定位失败。	请将errorDetail（通过getLocationDetail()方法获取）信息通过工单系统反馈给我们\n
+	    7	KEY鉴权失败。	请仔细检查key绑定的sha1值与apk签名sha1值是否对应，或通过高频问题查找相关解决办法\n
+	    8	Android exception常规错误	请将errordetail（通过getLocationDetail()方法获取）信息通过工单系统反馈给我们\n
+	    9	定位初始化时出现异常。	请重新启动定位\n
+	    10	定位客户端启动失败。	请检查AndroidManifest.xml文件是否配置了APSService定位服务\n
+	    11	定位时的基站信息错误。	请检查是否安装SIM卡，设备很有可能连入了伪基站网络\n
+	    12	缺少定位权限。	请在设备的设置中开启app的定位权限\n
+	</string>
+</resources>
