@@ -4,6 +4,7 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationClientOption.AMapLocationMode;
+import com.amap.api.location.AMapLocationClientOption.AMapLocationProtocol;
 import com.amap.api.location.AMapLocationListener;
 
 import android.os.Bundle;
@@ -198,6 +199,7 @@ public class Location_Activity extends CheckPermissionsActivity
 		mOption.setNeedAddress(true);//可选，设置是否返回逆地理地址信息。默认是ture
 		mOption.setOnceLocation(false);//可选，设置是否单次定位。默认是false
 		mOption.setOnceLocationLatest(false);//可选，设置是否等待wifi刷新，默认为false.如果设置为true,会自动变为单次定位，持续定位时不要使用
+		AMapLocationClientOption.setLocationProtocol(AMapLocationProtocol.HTTP);//可选， 设置网络请求的协议。可选HTTP或者HTTPS。默认为HTTP
 		return mOption;
 	}
 	

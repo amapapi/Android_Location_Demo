@@ -45,7 +45,7 @@
 	<string name="location_once">单次定位</string>
 	<string name="needAddress">逆地理编码</string>
 	<string name="cacheAble">开启缓存</string>
-	<string name="onceLastest">等待wifi刷新</string>
+	<string name="onceLastest">提高首次定位精度</string>
 	<string name="gpsFirst">GPS优先</string>
 	
 	<string name="alarmInterval">唤醒周期(s)</string>
