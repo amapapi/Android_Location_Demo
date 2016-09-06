@@ -87,14 +87,11 @@ public class CheckPermissionsActivity extends Activity
 		List<String> needRequestPermissonList = new ArrayList<String>();
 		for (String perm : permissions) {
 			if (ContextCompat.checkSelfPermission(this,
-					perm) != PackageManager.PERMISSION_GRANTED) {
+					perm) != PackageManager.PERMISSION_GRANTED
+					|| ActivityCompat.shouldShowRequestPermissionRationale(
+							this, perm)) {
 				needRequestPermissonList.add(perm);
-			} else {
-				if (ActivityCompat.shouldShowRequestPermissionRationale(
-						this, perm)) {
-					needRequestPermissonList.add(perm);
-				} 
-			}
+			} 
 		}
 		return needRequestPermissonList;
 	}
