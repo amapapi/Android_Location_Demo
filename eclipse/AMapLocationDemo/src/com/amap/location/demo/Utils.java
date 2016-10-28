@@ -36,7 +36,7 @@ public class Utils {
 	public final static String URL_H5LOCATION = "file:///android_asset/location.html";
 	/**
 	 * 根据定位结果返回定位信息的字符串
-	 * @param loc
+	 * @param location
 	 * @return
 	 */
 	public synchronized static String getLocationStr(AMapLocation location){
@@ -52,28 +52,30 @@ public class Utils {
 			sb.append("纬    度    : " + location.getLatitude() + "\n");
 			sb.append("精    度    : " + location.getAccuracy() + "米" + "\n");
 			sb.append("提供者    : " + location.getProvider() + "\n");
-			
+
+			sb.append("海    拔    : " + location.getAltitude() + "米" + "\n");
+			sb.append("速    度    : " + location.getSpeed() + "米/秒" + "\n");
+			sb.append("角    度    : " + location.getBearing() + "\n");
 			if (location.getProvider().equalsIgnoreCase(
 					android.location.LocationManager.GPS_PROVIDER)) {
 				// 以下信息只有提供者是GPS时才会有
-				sb.append("速    度    : " + location.getSpeed() + "米/秒" + "\n");
-				sb.append("角    度    : " + location.getBearing() + "\n");
 				// 获取当前提供定位服务的卫星个数
 				sb.append("星    数    : "
 						+ location.getSatellites() + "\n");
-			} else {
-				// 提供者是GPS时是没有以下信息的
-				sb.append("国    家    : " + location.getCountry() + "\n");
-				sb.append("省            : " + location.getProvince() + "\n");
-				sb.append("市            : " + location.getCity() + "\n");
-				sb.append("城市编码 : " + location.getCityCode() + "\n");
-				sb.append("区            : " + location.getDistrict() + "\n");
-				sb.append("区域 码   : " + location.getAdCode() + "\n");
-				sb.append("地    址    : " + location.getAddress() + "\n");
-				sb.append("兴趣点    : " + location.getPoiName() + "\n");
-				//定位完成的时间
-				sb.append("定位时间: " + formatUTC(location.getTime(), "yyyy-MM-dd HH:mm:ss:sss") + "\n");
 			}
+
+			//逆地理信息
+			sb.append("国    家    : " + location.getCountry() + "\n");
+			sb.append("省            : " + location.getProvince() + "\n");
+			sb.append("市            : " + location.getCity() + "\n");
+			sb.append("城市编码 : " + location.getCityCode() + "\n");
+			sb.append("区            : " + location.getDistrict() + "\n");
+			sb.append("区域 码   : " + location.getAdCode() + "\n");
+			sb.append("地    址    : " + location.getAddress() + "\n");
+			sb.append("兴趣点    : " + location.getPoiName() + "\n");
+			//定位完成的时间
+			sb.append("定位时间: " + formatUTC(location.getTime(), "yyyy-MM-dd HH:mm:ss") + "\n");
+
 		} else {
 			//定位失败
 			sb.append("定位失败" + "\n");
@@ -82,7 +84,7 @@ public class Utils {
 			sb.append("错误描述:" + location.getLocationDetail() + "\n");
 		}
 		//定位之后的回调时间
-		sb.append("回调时间: " + formatUTC(System.currentTimeMillis(), "yyyy-MM-dd HH:mm:ss:sss") + "\n");
+		sb.append("回调时间: " + formatUTC(System.currentTimeMillis(), "yyyy-MM-dd HH:mm:ss") + "\n");
 		return sb.toString();
 	}
 	
@@ -98,9 +100,6 @@ public class Utils {
 			}
 		} else {
 			sdf.applyPattern(strPattern);
-		}
-		if (l <= 0l) {
-			l = System.currentTimeMillis();
 		}
 		return sdf == null ? "NULL" : sdf.format(l);
 	}

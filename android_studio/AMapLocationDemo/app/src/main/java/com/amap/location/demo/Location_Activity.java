@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
@@ -42,7 +41,8 @@ public class Location_Activity extends CheckPermissionsActivity
 	private CheckBox cbGpsFirst;
 	private CheckBox cbCacheAble;
 	private CheckBox cbOnceLastest;
-	private TextView tvReult;
+	private CheckBox cbSensorAble;
+	private TextView tvResult;
 	private Button btLocation;
 
 	private AMapLocationClient locationClient = null;
@@ -72,8 +72,9 @@ public class Location_Activity extends CheckPermissionsActivity
 		cbAddress = (CheckBox) findViewById(R.id.cb_needAddress);
 		cbCacheAble = (CheckBox) findViewById(R.id.cb_cacheAble);
 		cbOnceLastest = (CheckBox) findViewById(R.id.cb_onceLastest);
-		
-		tvReult = (TextView) findViewById(R.id.tv_result);
+		cbSensorAble = (CheckBox)findViewById(R.id.cb_sensorAble);
+
+		tvResult = (TextView) findViewById(R.id.tv_result);
 		btLocation = (Button) findViewById(R.id.bt_location);
 		
 		rgLocationMode.setOnCheckedChangeListener(this);
@@ -122,6 +123,7 @@ public class Location_Activity extends CheckPermissionsActivity
 		cbAddress.setEnabled(isEnable);
 		cbCacheAble.setEnabled(isEnable);
 		cbOnceLastest.setEnabled(isEnable);
+		cbSensorAble.setEnabled(isEnable);
 	}
 
 	@Override
@@ -132,14 +134,14 @@ public class Location_Activity extends CheckPermissionsActivity
 				setViewEnable(false);
 				btLocation.setText(getResources().getString(
 						R.string.stopLocation));
-				tvReult.setText("正在定位...");
+				tvResult.setText("正在定位...");
 				startLocation();
 			} else {
 				setViewEnable(true);
 				btLocation.setText(getResources().getString(
 						R.string.startLocation));
 				stopLocation();
-				tvReult.setText("定位停止");
+				tvResult.setText("定位停止");
 			}
 		}
 	}
@@ -200,6 +202,7 @@ public class Location_Activity extends CheckPermissionsActivity
 		mOption.setOnceLocation(false);//可选，设置是否单次定位。默认是false
 		mOption.setOnceLocationLatest(false);//可选，设置是否等待wifi刷新，默认为false.如果设置为true,会自动变为单次定位，持续定位时不要使用
 		AMapLocationClientOption.setLocationProtocol(AMapLocationProtocol.HTTP);//可选， 设置网络请求的协议。可选HTTP或者HTTPS。默认为HTTP
+		mOption.setSensorEnable(false);//可选，设置是否使用传感器。默认是false
 		return mOption;
 	}
 	
@@ -212,9 +215,9 @@ public class Location_Activity extends CheckPermissionsActivity
 			if (null != loc) {
 				//解析定位结果
 				String result = Utils.getLocationStr(loc);
-				tvReult.setText(result);
+				tvResult.setText(result);
 			} else {
-				tvReult.setText("定位失败，loc is null");
+				tvResult.setText("定位失败，loc is null");
 			}
 		}
 	};
@@ -232,6 +235,8 @@ public class Location_Activity extends CheckPermissionsActivity
 		locationOption.setLocationCacheEnable(cbCacheAble.isChecked());
 		//设置是否等待设备wifi刷新，如果设置为true,会自动变为单次定位，持续定位时不要使用
 		locationOption.setOnceLocationLatest(cbOnceLastest.isChecked());
+		//设置是否使用传感器
+		locationOption.setSensorEnable(cbSensorAble.isChecked());
 		String strInterval = etInterval.getText().toString();
 		if (!TextUtils.isEmpty(strInterval)) {
 			try{

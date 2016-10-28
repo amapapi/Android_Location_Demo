@@ -33,8 +33,12 @@
 	<string name="title_errorCode">错误码说明</string>
 	<string name="errorCode">错误码说明</string>
 	<string name="errorCode_dec">错误码说明以及对应的解决方法</string>
+
+    <string name="title_mulityClient">多个定位客户端</string>
+    <string name="mulityClient">多个定位客户端</string>
+    <string name="mulityClient_dec">使用多个定位客户端进行定位的示例</string>
     
-	<string name="defaultInteval">1000</string>
+	<string name="defaultInteval">2000</string>
 	<string name="defaultHttpTimeout">30000</string>
 	
 	<string name="battery_saving">低功耗模式</string>
@@ -47,6 +51,7 @@
 	<string name="cacheAble">开启缓存</string>
 	<string name="onceLastest">提高首次定位精度</string>
 	<string name="gpsFirst">GPS优先</string>
+    <string name="useSensor">使用传感器</string>
 	
 	<string name="alarmInterval">唤醒周期(s)</string>
 	

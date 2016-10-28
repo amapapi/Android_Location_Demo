@@ -6,16 +6,16 @@ android {
          * 设置你的keystore相关
          * demo中只是一个示例，使用时请根据实际情况进行配置
          */
-//        debug {
-//            //keystore中key的别名
-//            keyAlias 'androiddebugkey'
-//            //keystore中key的密码
-//            keyPassword 'android'
-//            //keystore的文件路径，可以是绝对路径也可以是相对路径
-//            storeFile file('D:/keystore/debug_loc.keystore')
-//            //keystore的密码
-//            storePassword 'android'
-//        }
+        debug {
+            //keystore中key的别名
+            keyAlias 'androiddebugkey'
+            //keystore中key的密码
+            keyPassword 'android'
+            //keystore的文件路径，可以是绝对路径也可以是相对路径
+            storeFile file('D:/keystore/debug_loc.keystore')
+            //keystore的密码
+            storePassword 'android'
+        }
     }
     compileSdkVersion 23
     buildToolsVersion '23.0.1'

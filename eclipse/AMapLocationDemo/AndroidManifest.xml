@@ -107,6 +107,12 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             >
         </activity>
+        <activity
+            android:name="com.amap.location.demo.Mulity_LocationClient_Activity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            >
+        </activity>
     </application>
 
     

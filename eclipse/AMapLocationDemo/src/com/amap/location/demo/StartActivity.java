@@ -71,6 +71,8 @@ public class StartActivity extends ListActivity {
 					LastLocation_Activity.class),
 			new DemoDetails(R.string.alarmCPU, R.string.alarmCPU_dec,
 					Alarm_Location_Activity.class),
+			new DemoDetails(R.string.mulityClient, R.string.mulityClient_dec,
+					Mulity_LocationClient_Activity.class),
 			new DemoDetails(R.string.errorCode, R.string.errorCode_dec,
 					ErrorCode_Activity.class),
 			};

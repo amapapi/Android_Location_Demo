@@ -131,6 +131,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/onceLastest" />
+        <CheckBox
+            android:id="@+id/cb_sensorAble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/useSensor" />
     </LinearLayout>
 
 </LinearLayout>
