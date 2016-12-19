@@ -23,7 +23,6 @@ import android.widget.ListView;
  * @类型名称: StartActivity
  */
 public class StartActivity extends ListActivity {
-	private CheckPermissionsActivity permChecker = null;
 	private static class DemoDetails {
 		private final int titleId;
 		private final int descriptionId;
@@ -60,7 +59,7 @@ public class StartActivity extends ListActivity {
 	private static final DemoDetails[] demos = {
 			new DemoDetails(R.string.location,
 					R.string.location_dec, Location_Activity.class),
-			new DemoDetails(R.string.geoFenceAlert, R.string.geoFenceAlert_dec,
+			new DemoDetails(R.string.geoFence, R.string.geoFence_dec,
 					GeoFence_Activity.class),
 			new DemoDetails(R.string.assistantLocation,
 					R.string.assistantLocation_dec,
@@ -71,8 +70,6 @@ public class StartActivity extends ListActivity {
 					LastLocation_Activity.class),
 			new DemoDetails(R.string.alarmCPU, R.string.alarmCPU_dec,
 					Alarm_Location_Activity.class),
-			new DemoDetails(R.string.mulityClient, R.string.mulityClient_dec,
-					Mulity_LocationClient_Activity.class),
 			new DemoDetails(R.string.errorCode, R.string.errorCode_dec,
 					ErrorCode_Activity.class),
 			};
@@ -94,12 +91,6 @@ public class StartActivity extends ListActivity {
 //		permChecker = new PermissionsChecker(this);
 	}
 
-//	@Override
-//	protected void onResume() {
-//		super.onResume();
-////		permChecker.checkPermissions(Utils.needPermissions);
-////		Utils.checkPermissions(this, 0);
-//	}
 	@Override
 	public void onBackPressed() {
 		super.onBackPressed();

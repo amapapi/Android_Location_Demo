@@ -8,9 +8,32 @@
     <string name="location">获取定位数据</string>
     <string name="location_dec">调用定位接口获取定位数据</string>
     
-    <string name="title_geoFenceAlert">地理围栏</string>
-    <string name="geoFenceAlert">地理围栏</string>
-    <string name="geoFenceAlert_dec">可以设置对进入或离开区域进行提醒</string>
+    <string name="title_geoFence">地理围栏</string>
+    <string name="geoFence">地理围栏</string>
+    <string name="geoFence_dec">展示地理围栏功能</string>
+    
+    <string name="roundGeoFence">圆形地理围栏</string>
+    <string name="roundGeoFence_dec">展示圆形地理围栏</string>
+    
+    <string name="polygonGeoFence">多边形地理围栏</string>
+    <string name="polygonGeoFence_dec">展示多边形地理围栏</string>
+    
+    <string name="keywordGeoFence">关键字地理围栏</string>
+    <string name="keywordGeoFence_dec">展示关键字地理围栏</string>
+    
+    <string name="nearbyGeoFence">周边地理围栏</string>
+    <string name="nearbyGeoFence_dec">展示周边地理围栏</string>
+    
+    <string name="districtGeoFence">行政区划地理围栏</string>
+    <string name="districtGeoFence_dec">展示行政区划地理围栏</string>
+    
+    <string name="multipleGeoFence">综合展示</string>
+    <string name="multipleGeoFence_dec">综合展示地理围栏的功能</string>
+    
+    
+    <string name="oldGeoFence">旧版地理围栏</string>
+    <string name="oldGeoFence_dec">旧版地理围栏，不建议使用</string>
+    
     
     
     <string name="title_assistantLocation">H5辅助定位</string>
@@ -33,10 +56,6 @@
 	<string name="title_errorCode">错误码说明</string>
 	<string name="errorCode">错误码说明</string>
 	<string name="errorCode_dec">错误码说明以及对应的解决方法</string>
-
-    <string name="title_mulityClient">多个定位客户端</string>
-    <string name="mulityClient">多个定位客户端</string>
-    <string name="mulityClient_dec">使用多个定位客户端进行定位的示例</string>
     
 	<string name="defaultInteval">2000</string>
 	<string name="defaultHttpTimeout">30000</string>
@@ -52,6 +71,7 @@
 	<string name="onceLastest">提高首次定位精度</string>
 	<string name="gpsFirst">GPS优先</string>
     <string name="useSensor">使用传感器</string>
+    <string name="wifiScan">开启wifi扫描</string>
 	
 	<string name="alarmInterval">唤醒周期(s)</string>
 	
@@ -60,10 +80,24 @@
 	
 	<string name="fenceRadius">围栏半径</string>
 	<string name="meter">米</string>
-	<string name="alertIn">进入提醒</string>
-	<string name="alertOut">离开提醒</string>
+	<string name="activatesAction">触发条件</string>
+	<string name="alertIn">进入</string>
+	<string name="alertOut">离开</string>
+	<string name="alertStated">停留</string>
 	<string name="addFence">添加围栏</string>
 	<string name="removeFence">移除围栏</string>
+	
+	<string name="hideOption">隐藏设置</string>
+	<string name="showOption">显示设置</string>
+	
+	<string name="showList">显示列表</string>
+	<string name="hideList">隐藏列表</string>
+	
+	<string name="fence_round">圆形围栏</string>
+	<string name="fence_polygon">多边形</string>
+	<string name="fence_keyword">关键字围栏</string>
+	<string name="fence_nearby">周边围栏</string>
+	<string name="fence_district">行政区划围栏</string>
 	
 	<string name="getLastLocation">获取最后位置</string>
 	
@@ -79,6 +113,10 @@
 	<string name="notifyMsg">当前应用缺少必要权限。\n\n请点击\"设置\"-\"权限\"-打开所需权限。</string>
 	<string name="setting">设置</string>
 	<string name="cancel">取消</string>
+	
+	
+	
+	
 	
 	<string name="errorCodeInfo">
 	    0	定位成功。	可以在定位回调里判断定位返回成功后再进行业务逻辑运算\n

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#D999"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/ly_option"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <RadioGroup
+            android:id="@+id/rg_fenceType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" 
+            android:visibility="gone">
+
+            <RadioButton
+                android:id="@+id/rb_roundFence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/fence_round" />
+
+            <RadioButton
+                android:id="@+id/rb_polygonFence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fence_polygon" />
+
+            <RadioButton
+                android:id="@+id/rb_keywordFence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fence_keyword" />
+
+            <RadioButton
+                android:id="@+id/rb_nearbyFence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fence_nearby" />
+
+            <RadioButton
+                android:id="@+id/rb_districeFence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fence_district" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/et_customerId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="业务ID" >
+                    <requestFocus />
+                </EditText>
+
+                <EditText
+                    android:id="@+id/et_keyword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="关键字" 
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/et_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="城市" 
+                    android:visibility="gone"/>
+
+                <EditText
+                    android:id="@+id/et_poitype"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="POI类型"
+                    android:visibility="gone"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <EditText
+                    android:id="@+id/et_radius"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="围栏半径"
+                    android:inputType="numberDecimal" 
+                    android:visibility="gone"/>
+
+                <EditText
+                    android:id="@+id/et_fenceSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="最大围栏数量"
+                    android:inputType="numberSigned"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/activatesAction" />
+
+        <CheckBox
+            android:id="@+id/cb_alertIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="true"
+            android:text="@string/alertIn" />
+
+        <CheckBox
+            android:id="@+id/cb_alertOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/alertOut" />
+
+        <CheckBox
+            android:id="@+id/cb_alertStated"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/alertStated" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_guide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/bt_addFence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_middle"
+            android:text="@string/addFence"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/bt_option"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/showOption"
+            android:textSize="16dp" 
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</LinearLayout>

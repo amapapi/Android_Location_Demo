@@ -1,82 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/normal_margin" >
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="以当前位置为中心点设置地理围栏" />
-
-    <LinearLayout
+    >
+    <ListView
+        android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/normal_margin" >
-
-        <TextView
-            android:id="@+id/tv_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fenceRadius" />
-
-        <EditText
-            android:id="@+id/et_radius"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_middle"
-            android:ems="10"
-            android:hint="1000"
-            android:inputType="number" >
-
-            <requestFocus />
-        </EditText>
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_middle"
-            android:text="@string/meter" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-
-        <CheckBox
-            android:id="@+id/cb_alertIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="@string/alertIn" />
-
-        <CheckBox
-            android:id="@+id/cb_alertOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_middle"
-            android:checked="true"
-            android:text="@string/alertOut" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" >
-
-        <Button
-            android:id="@+id/bt_fence"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/addFence" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/normal_margin" />
-
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 </LinearLayout>
