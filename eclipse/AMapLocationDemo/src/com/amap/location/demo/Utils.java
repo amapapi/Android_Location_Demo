@@ -72,7 +72,7 @@ public class Utils {
 				sb.append("地    址    : " + location.getAddress() + "\n");
 				sb.append("兴趣点    : " + location.getPoiName() + "\n");
 				//定位完成的时间
-				sb.append("定位时间: " + formatUTC(location.getTime(), "yyyy-MM-dd HH:mm:ss:sss") + "\n");
+				sb.append("定位时间: " + formatUTC(location.getTime(), "yyyy-MM-dd HH:mm:ss") + "\n");
 			}
 		} else {
 			//定位失败
@@ -82,7 +82,7 @@ public class Utils {
 			sb.append("错误描述:" + location.getLocationDetail() + "\n");
 		}
 		//定位之后的回调时间
-		sb.append("回调时间: " + formatUTC(System.currentTimeMillis(), "yyyy-MM-dd HH:mm:ss:sss") + "\n");
+		sb.append("回调时间: " + formatUTC(System.currentTimeMillis(), "yyyy-MM-dd HH:mm:ss") + "\n");
 		return sb.toString();
 	}
 	
@@ -98,9 +98,6 @@ public class Utils {
 			}
 		} else {
 			sdf.applyPattern(strPattern);
-		}
-		if (l <= 0l) {
-			l = System.currentTimeMillis();
 		}
 		return sdf == null ? "NULL" : sdf.format(l);
 	}

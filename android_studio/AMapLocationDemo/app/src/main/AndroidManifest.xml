@@ -30,7 +30,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!--用于访问GPS定位-->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-   
+    <!--用于提高GPS定位速度-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <!--写入扩展存储，向扩展卡写入数据，用于写入缓存定位数据-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
      <!--读取缓存数据-->
@@ -41,6 +42,11 @@
     
     <!-- 更改设置 -->
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    
+    <!-- 3.2.0版本增加 -->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- 3.2.0版本增加-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
         android:allowBackup="true"
@@ -49,7 +55,7 @@
         <!-- 设置key -->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="请输入你申请的KEY" />
+            android:value="你申请的Key" />
 		<!-- 定位需要的服务 -->
         <service android:name="com.amap.api.location.APSService" >
         </service>
@@ -83,6 +89,12 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             >
         </activity>
+         <activity
+            android:name="com.amap.location.demo.GeoFence_Old_Activity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            >
+        </activity>
         <activity
             android:name="com.amap.location.demo.Assistant_Location_Activity"
             android:windowSoftInputMode="adjustResize|stateHidden"
@@ -103,6 +115,42 @@
         </activity>
         <activity
             android:name="com.amap.location.demo.Tools_Activity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            >
+        </activity>
+        <activity
+            android:name="com.amap.location.demo.GeoFence_Round_Activity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            >
+        </activity>
+        <activity
+            android:name="com.amap.location.demo.GeoFence_Polygon_Activity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            >
+        </activity>
+        <activity
+            android:name="com.amap.location.demo.GeoFence_Keyword_Activity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            >
+        </activity>
+        <activity
+            android:name="com.amap.location.demo.GeoFence_Nearby_Activity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            >
+        </activity>
+        <activity
+            android:name="com.amap.location.demo.GeoFence_District_Activity"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            >
+        </activity>
+        <activity
+            android:name="com.amap.location.demo.GeoFence_Multiple_Activity"
             android:windowSoftInputMode="adjustResize|stateHidden"
             android:configChanges="keyboardHidden|orientation|screenSize"
             >

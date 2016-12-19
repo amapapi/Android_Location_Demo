@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
     signingConfigs {
         /**
          * 设置你的keystore相关
