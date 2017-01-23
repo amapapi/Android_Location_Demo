@@ -67,7 +67,7 @@ public class GeoFence_Polygon_Activity extends CheckPermissionsActivity
 
 	private TextView tvGuide;
 	private TextView tvResult;
-	private EditText etCustomerId;
+	private EditText etCustomId;
 	private CheckBox cbAlertIn;
 	private CheckBox cbAlertOut;
 	private CheckBox cbAldertStated;
@@ -110,6 +110,7 @@ public class GeoFence_Polygon_Activity extends CheckPermissionsActivity
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_geofence_new);
+		setTitle(R.string.polygonGeoFence);
 		// 初始化地理围栏
 		fenceClient = new GeoFenceClient(getApplicationContext());
 
@@ -117,7 +118,7 @@ public class GeoFence_Polygon_Activity extends CheckPermissionsActivity
 		tvGuide = (TextView) findViewById(R.id.tv_guide);
 		tvResult = (TextView) findViewById(R.id.tv_result);
 		tvResult.setVisibility(View.GONE);
-		etCustomerId = (EditText) findViewById(R.id.et_customerId);
+		etCustomId = (EditText) findViewById(R.id.et_customId);
 
 		cbAlertIn = (CheckBox) findViewById(R.id.cb_alertIn);
 		cbAlertOut = (CheckBox) findViewById(R.id.cb_alertOut);
@@ -150,9 +151,14 @@ public class GeoFence_Polygon_Activity extends CheckPermissionsActivity
 				ConnectivityManager.CONNECTIVITY_ACTION);
 		fliter.addAction(GEOFENCE_BROADCAST_ACTION);
 		registerReceiver(mGeoFenceReceiver, fliter);
-
+		/**
+		 * 创建pendingIntent
+		 */
 		fenceClient.createPendingIntent(GEOFENCE_BROADCAST_ACTION);
 		fenceClient.setGeoFenceListener(this);
+		/**
+		 * 设置地理围栏的触发行为,默认为进入
+		 */
 		fenceClient.setActivateAction(GeoFenceClient.GEOFENCE_IN);
 	}
 
@@ -163,9 +169,18 @@ public class GeoFence_Polygon_Activity extends CheckPermissionsActivity
 		mAMap.setOnMapClickListener(this);
 		mAMap.setLocationSource(this);// 设置定位监听
 		mAMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
-		mAMap.setMyLocationStyle(
-				new MyLocationStyle().radiusFillColor(Color.argb(0, 0, 0, 0))
-						.strokeColor(Color.argb(0, 0, 0, 0)));
+		MyLocationStyle myLocationStyle = new MyLocationStyle();
+		// 自定义定位蓝点图标
+		myLocationStyle.myLocationIcon(
+				BitmapDescriptorFactory.fromResource(R.drawable.gps_point));
+		// 自定义精度范围的圆形边框颜色
+		myLocationStyle.strokeColor(Color.argb(0, 0, 0, 0));
+		// 自定义精度范围的圆形边框宽度
+		myLocationStyle.strokeWidth(0);
+		// 设置圆形的填充颜色
+		myLocationStyle.radiusFillColor(Color.argb(0, 0, 0, 0));
+		// 将自定义的 myLocationStyle 对象添加到地图上
+		mAMap.setMyLocationStyle(myLocationStyle);
 		mAMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
 		// 设置定位的类型为定位模式 ，可以由定位、跟随或地图根据面向方向旋转几种
 		mAMap.setMyLocationType(AMap.LOCATION_TYPE_LOCATE);
@@ -256,8 +271,8 @@ public class GeoFence_Polygon_Activity extends CheckPermissionsActivity
 				fence.getCenter().getLongitude());
 		// 绘制一个圆形
 		mAMap.addCircle(new CircleOptions().center(center)
-				.radius(fence.getRadius()).strokeColor(Color.BLUE)
-				.fillColor(Color.argb(1, 1, 1, 1)).strokeWidth(10));
+				.radius(fence.getRadius()).strokeColor(Const.STROKE_COLOR)
+				.fillColor(Const.FILL_COLOR).strokeWidth(Const.STROKE_WIDTH));
 		boundsBuilder.include(center);
 	}
 
@@ -277,8 +292,8 @@ public class GeoFence_Polygon_Activity extends CheckPermissionsActivity
 			}
 			polygonOption.addAll(lst);
 
-			polygonOption.strokeColor(Color.BLUE).strokeWidth(10)
-					.fillColor(Color.argb(1, 1, 1, 1));
+			polygonOption.strokeColor(Const.STROKE_COLOR)
+					.fillColor(Const.FILL_COLOR).strokeWidth(Const.STROKE_WIDTH);
 			mAMap.addPolygon(polygonOption);
 		}
 	}
@@ -312,7 +327,13 @@ public class GeoFence_Polygon_Activity extends CheckPermissionsActivity
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 				case 0 :
-					Toast.makeText(getApplicationContext(), "添加围栏成功",
+					StringBuffer sb = new StringBuffer();
+					sb.append("添加围栏成功");
+					String customId = (String)msg.obj;
+					if(!TextUtils.isEmpty(customId)){
+						sb.append("customId: ").append(customId);
+					}
+					Toast.makeText(getApplicationContext(), sb.toString(),
 							Toast.LENGTH_SHORT).show();
 					drawFence2Map();
 					break;
@@ -335,26 +356,33 @@ public class GeoFence_Polygon_Activity extends CheckPermissionsActivity
 	List<GeoFence> fenceList = new ArrayList<GeoFence>();
 	@Override
 	public void onGeoFenceCreateFinished(final List<GeoFence> geoFenceList,
-			int errorCode) {
+			int errorCode, String customId) {
+		Message msg = Message.obtain();
 		if (errorCode == GeoFence.ADDGEOFENCE_SUCCESS) {
 			fenceList = geoFenceList;
-			handler.sendEmptyMessage(0);
+			msg.obj = customId;
+			msg.what = 0;
 		} else {
-			Message msg = Message.obtain();
 			msg.arg1 = errorCode;
 			msg.what = 1;
-			handler.sendMessage(msg);
 		}
+		handler.sendMessage(msg);
 	}
 
+	/**
+	 * 接收触发围栏后的广播,当添加围栏成功之后，会立即对所有围栏状态进行一次侦测，如果当前状态与用户设置的触发行为相符将会立即触发一次围栏广播；
+	 * 只有当触发围栏之后才会收到广播,对于同一触发行为只会发送一次广播不会重复发送，除非位置和围栏的关系再次发生了改变。
+	 */
 	private BroadcastReceiver mGeoFenceReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			// 接收广播
 			if (intent.getAction().equals(GEOFENCE_BROADCAST_ACTION)) {
 				Bundle bundle = intent.getExtras();
-				String customerId = bundle
+				String customId = bundle
 						.getString(GeoFence.BUNDLE_KEY_CUSTOMID);
+				String fenceId = bundle.getString(GeoFence.BUNDLE_KEY_FENCEID);
+				//status标识的是当前的围栏状态，不是围栏行为
 				int status = bundle.getInt(GeoFence.BUNDLE_KEY_FENCESTATUS);
 				StringBuffer sb = new StringBuffer();
 				switch (status) {
@@ -362,16 +390,22 @@ public class GeoFence_Polygon_Activity extends CheckPermissionsActivity
 						sb.append("定位失败");
 						break;
 					case GeoFence.STATUS_IN :
-						sb.append("进入围栏 ").append(customerId);
+						sb.append("进入围栏 ");
 						break;
 					case GeoFence.STATUS_OUT :
-						sb.append("离开围栏 ").append(customerId);
+						sb.append("离开围栏 ");
 						break;
 					case GeoFence.STATUS_STAYED :
-						sb.append("停留在围栏内 ").append(customerId);
+						sb.append("停留在围栏内 ");
 						break;
 					default :
 						break;
+				}
+				if(status != GeoFence.STATUS_LOCFAIL){
+					if(!TextUtils.isEmpty(customId)){
+						sb.append(" customId: " + customId);
+					}
+					sb.append(" fenceId: " + fenceId);
 				}
 				String str = sb.toString();
 				Message msg = Message.obtain();
@@ -532,9 +566,8 @@ public class GeoFence_Polygon_Activity extends CheckPermissionsActivity
 	 *
 	 */
 	private void addPolygonFence() {
-		String customerId = etCustomerId.getText().toString();
-		if (null == polygonPoints || polygonPoints.size() < 3
-				|| TextUtils.isEmpty(customerId)) {
+		String customId = etCustomId.getText().toString();
+		if (null == polygonPoints || polygonPoints.size() < 3) {
 			Toast.makeText(getApplicationContext(), "参数不全", Toast.LENGTH_SHORT)
 					.show();
 			btAddFence.setEnabled(true);
@@ -544,6 +577,6 @@ public class GeoFence_Polygon_Activity extends CheckPermissionsActivity
 		for (LatLng latLng : polygonPoints) {
 			pointList.add(new DPoint(latLng.latitude, latLng.longitude));
 		}
-		fenceClient.addGeoFence(pointList, customerId);
+		fenceClient.addGeoFence(pointList, customId);
 	}
 }

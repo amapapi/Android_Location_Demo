@@ -14,42 +14,16 @@
             android:layout_height="match_parent" >
         </com.amap.api.maps.MapView>
 
-        <LinearLayout
-            android:id="@+id/ly_fenceList"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
-
-            <Button
-                android:id="@+id/bt_fenceList"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/showList"
-                android:visibility="gone" />
-
-            <ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#D999" >
-
-                <TextView
-                    android:id="@+id/tv_fenceList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/normal_margin"
-                    android:text="已添加围栏列表"
-                    android:visibility="gone" />
-            </ScrollView>
-        </LinearLayout>
-
+		<ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="#D999"
+                android:layout_alignParentBottom="true">
         <TextView
             android:id="@+id/tv_result"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:background="#D999"
-            android:visibility="gone" />
+            android:layout_height="wrap_content"/>
+        </ScrollView>
     </RelativeLayout>
 
 </LinearLayout>

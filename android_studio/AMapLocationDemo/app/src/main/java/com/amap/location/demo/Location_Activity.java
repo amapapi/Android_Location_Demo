@@ -31,8 +31,7 @@ import android.widget.TextView;
 public class Location_Activity extends CheckPermissionsActivity
 		implements
 			OnCheckedChangeListener,
-			OnClickListener,
-			CompoundButton.OnCheckedChangeListener {
+			OnClickListener{
 	private RadioGroup rgLocationMode;
 	private EditText etInterval;
 	private EditText etHttpTimeout;
@@ -78,8 +77,6 @@ public class Location_Activity extends CheckPermissionsActivity
 		btLocation = (Button) findViewById(R.id.bt_location);
 		
 		rgLocationMode.setOnCheckedChangeListener(this);
-		cbAddress.setOnCheckedChangeListener(this);
-		cbCacheAble.setOnCheckedChangeListener(this);
 		btLocation.setOnClickListener(this);
 	}
 	
@@ -146,29 +143,29 @@ public class Location_Activity extends CheckPermissionsActivity
 		}
 	}
 
-	@Override
-	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		if(null == locationOption){
-			locationOption = new AMapLocationClientOption();
-		}
-		switch (buttonView.getId()) {
-			case R.id.cb_needAddress :
-				if(null != locationOption){
-					locationOption.setNeedAddress(isChecked);
-				}
-				break;
-			case R.id.cb_cacheAble :
-				if(null != locationOption){
-					locationOption.setLocationCacheEnable(isChecked);
-				}
-				break;
-			default :
-				break;
-		}
-		if(null != locationClient){
-			locationClient.setLocationOption(locationOption);
-		}
-	}
+//	@Override
+//	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//		if(null == locationOption){
+//			locationOption = new AMapLocationClientOption();
+//		}
+//		switch (buttonView.getId()) {
+//			case R.id.cb_needAddress :
+//				if(null != locationOption){
+//					locationOption.setNeedAddress(isChecked);
+//				}
+//				break;
+//			case R.id.cb_cacheAble :
+//				if(null != locationOption){
+//					locationOption.setLocationCacheEnable(isChecked);
+//				}
+//				break;
+//			default :
+//				break;
+//		}
+//		if(null != locationClient){
+//			locationClient.setLocationOption(locationOption);
+//		}
+//	}
 	
 	/**
 	 * 初始化定位
@@ -204,6 +201,7 @@ public class Location_Activity extends CheckPermissionsActivity
 		AMapLocationClientOption.setLocationProtocol(AMapLocationProtocol.HTTP);//可选， 设置网络请求的协议。可选HTTP或者HTTPS。默认为HTTP
 		mOption.setSensorEnable(false);//可选，设置是否使用传感器。默认是false
 		mOption.setWifiScan(true); //可选，设置是否开启wifi扫描。默认为true，如果设置为false会同时停止主动刷新，停止以后完全依赖于系统刷新，定位位置可能存在误差
+		mOption.setLocationCacheEnable(true); //可选，设置是否使用缓存定位，默认为true
 		return mOption;
 	}
 	
@@ -234,6 +232,8 @@ public class Location_Activity extends CheckPermissionsActivity
 		locationOption.setGpsFirst(cbGpsFirst.isChecked());
 		// 设置是否开启缓存
 		locationOption.setLocationCacheEnable(cbCacheAble.isChecked());
+		// 设置是否单次定位
+		locationOption.setOnceLocation(cbOnceLocation.isChecked());
 		//设置是否等待设备wifi刷新，如果设置为true,会自动变为单次定位，持续定位时不要使用
 		locationOption.setOnceLocationLatest(cbOnceLastest.isChecked());
 		//设置是否使用传感器
