@@ -1,5 +1,6 @@
 package com.amap.location.demo;
 
+import com.amap.api.fence.GeoFence;
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
@@ -16,7 +17,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -100,9 +100,6 @@ public class GeoFence_Old_Activity extends CheckPermissionsActivity implements O
 							// 添加地理围栏，
 							// 第一个参数：围栏ID,可以自定义ID,示例中为了方便只使用一个ID;第二个：纬度；第三个：精度；
 							// 第四个：半径；第五个：过期时间，单位毫秒，-1代表不过期；第六个：接收触发消息的PendingIntent
-							Log.e("WHM", "lat===" + loc.getLatitude());
-							Log.e("WHM", "lon===" + loc.getLongitude());
-							Log.e("WHM", "rd===" + radius);
 							locationClient.addGeoFenceAlert("fenceId",
 									loc.getLatitude(), loc.getLongitude(),
 									radius, -1, mPendingIntent);
@@ -149,8 +146,8 @@ public class GeoFence_Old_Activity extends CheckPermissionsActivity implements O
 			if (intent.getAction().equals(GEOFENCE_BROADCAST_ACTION)) {
 				Bundle bundle = intent.getExtras();
 				// 根据广播的event来确定是在区域内还是在区域外
-				int status = bundle.getInt("event");
-				String geoFenceId = bundle.getString("fenceid");
+				int status = bundle.getInt(GeoFence.BUNDLE_KEY_FENCESTATUS);
+				String geoFenceId = bundle.getString(GeoFence.BUNDLE_KEY_FENCEID);
 				if (status == 1) {
 					// 进入围栏区域
 					// 可以自定义提醒方式,示例中使用的是文字方式
